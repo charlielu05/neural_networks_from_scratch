@@ -52,7 +52,6 @@ class Loss_CategoricalCrossentropy(Loss):
         # clip data to avoid division by 0 
         y_pred_clipped = np.clip(y_pred, 1e-7, 1-1e-7)
 
-        print(y_pred.shape)
         # probabilities for target values
         # only if categorical labels
         if len(y_true.shape) == 1:
@@ -105,4 +104,7 @@ if __name__ == "__main__":
     loss = loss_function.calculate(activation2.output, y)
     # print loss value 
     print(f"loss: {loss}")
+    # print accuracy 
+    predictions = np.argmax(activation2.output, axis=1)
+    print(f"Accuracy: {np.mean(y==predictions)}")
 
